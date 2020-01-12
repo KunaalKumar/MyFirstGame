@@ -8,23 +8,25 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
         if (Input.GetKey("w"))
         {
-            playerBody.AddForce(0, 0, movementSpeed * Time.deltaTime);
+            playerBody.AddForce(transform.forward * movementSpeed * Time.deltaTime);
         }
         if (Input.GetKey("a"))
         {
-            playerBody.AddForce(-movementSpeed * Time.deltaTime, 0, 0);
+            transform.Rotate(new Vector3(0, -50 * Time.deltaTime, 0));
         }
         if (Input.GetKey("s"))
         {
-            playerBody.AddForce(0, 0, -movementSpeed * Time.deltaTime);
+            playerBody.AddForce(-transform.forward * movementSpeed * Time.deltaTime);
         }
         if (Input.GetKey("d"))
         {
-            playerBody.AddForce(movementSpeed * Time.deltaTime, 0, 0);
+            transform.Rotate(new Vector3(0, 50 * Time.deltaTime, 0));
+        }
+        if (Input.GetKeyUp("space"))
+        {
+            playerBody.AddForce(transform.up * movementSpeed);
         }
     }
-
 }

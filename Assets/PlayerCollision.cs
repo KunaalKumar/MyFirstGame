@@ -9,7 +9,7 @@ public class PlayerCollision : MonoBehaviour
     void OnCollisionEnter(Collision collisionInfo)
     {
        if(!collisionInfo.collider.tag.Equals("Ground")) {
-           Debug.Log("Collided with " + collisionInfo.collider.name);
+           Debug.Log(transform.name + " collided with " + collisionInfo.collider.name);
            movementScript.enabled = false;
        }
     }

@@ -1,9 +1,30 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Rigidbody playerBody;
+    Rigidbody playerBody;
     public float movementSpeed = 2000f;
+    public float turnSpeed=5;
+
+    public GameObject weapon;
+
+    void Start(){
+        playerBody=GetComponent<Rigidbody>();
+    }
+
+    // void Update(){
+    //     if(Input.GetMouseButtonUp(0)){
+    //         weapon.SetActive(true);
+    //         StartCoroutine("ResetWeapon");
+    //     }
+    // }
+
+    // IEnumerator ResetWeapon(){
+    //     yield return new WaitForSeconds(2);
+    //     weapon.SetActive(false);
+    // }
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -11,19 +32,22 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey("w"))
         {
-            playerBody.AddForce(0, 0, movementSpeed * Time.deltaTime);
+            playerBody.AddForce(transform.forward*10);
         }
         if (Input.GetKey("a"))
         {
-            playerBody.AddForce(-movementSpeed * Time.deltaTime, 0, 0);
+            //playerBody.AddForce(-movementSpeed * Time.deltaTime, 0, 0);
+            transform.Rotate(new Vector3(0,-turnSpeed,0));
         }
         if (Input.GetKey("s"))
         {
-            playerBody.AddForce(0, 0, -movementSpeed * Time.deltaTime);
+            //playerBody.AddForce(0, 0, -movementSpeed * Time.deltaTime);
+            playerBody.AddForce(-transform.forward*10);
         }
         if (Input.GetKey("d"))
         {
-            playerBody.AddForce(movementSpeed * Time.deltaTime, 0, 0);
+            //playerBody.AddForce(movementSpeed * Time.deltaTime, 0, 0);
+            transform.Rotate(new Vector3(0,turnSpeed,0));
         }
     }
 

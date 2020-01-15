@@ -37,7 +37,8 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey("a"))
         {
             //playerBody.AddForce(-movementSpeed * Time.deltaTime, 0, 0);
-            transform.Rotate(new Vector3(0,-turnSpeed,0));
+           // transform.Rotate(new Vector3(0,-turnSpeed,0));
+            playerBody.AddTorque(new Vector3(0,-turnSpeed,0));
         }
         if (Input.GetKey("s"))
         {
@@ -47,7 +48,8 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey("d"))
         {
             //playerBody.AddForce(movementSpeed * Time.deltaTime, 0, 0);
-            transform.Rotate(new Vector3(0,turnSpeed,0));
+            //transform.Rotate(new Vector3(0,turnSpeed,0));
+            playerBody.AddTorque(new Vector3(0,turnSpeed,0));
         }
     }
 

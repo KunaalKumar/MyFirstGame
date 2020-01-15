@@ -9,6 +9,6 @@ PhysicMaterial:
   m_Name: Football
   dynamicFriction: 0.17
   staticFriction: 0.23
-  bounciness: 0.72
+  bounciness: 0.5
   frictionCombine: 0
-  bounceCombine: 0
+  bounceCombine: 3

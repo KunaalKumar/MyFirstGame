@@ -50,4 +50,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void Update(){
+        if(Input.GetMouseButtonUp(0)){
+            Debug.Log("called");
+            animator.SetTrigger("Kick");
+        }
+    }
+
 }

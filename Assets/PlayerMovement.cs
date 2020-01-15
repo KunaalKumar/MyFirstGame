@@ -13,19 +13,6 @@ public class PlayerMovement : MonoBehaviour
         playerBody=GetComponent<Rigidbody>();
     }
 
-    // void Update(){
-    //     if(Input.GetMouseButtonUp(0)){
-    //         weapon.SetActive(true);
-    //         StartCoroutine("ResetWeapon");
-    //     }
-    // }
-
-    // IEnumerator ResetWeapon(){
-    //     yield return new WaitForSeconds(2);
-    //     weapon.SetActive(false);
-    // }
-
-
     // Update is called once per frame
     void FixedUpdate()
     {

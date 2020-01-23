@@ -61,6 +61,9 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("called");
             animator.SetTrigger("Kick");
         }
+        // if(Input.GetKeyUp(KeyCode.Space)){
+        //     animator.SetTrigger("Sliding");
+        // }
     }
 
     void OnCollisionEnter(Collision collision){

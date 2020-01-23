@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Goal
   - Ball
+  - Leg
   layers:
   - Default
   - TransparentFX

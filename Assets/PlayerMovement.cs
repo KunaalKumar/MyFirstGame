@@ -4,11 +4,13 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody playerBody;
-    public float movementSpeed = 2000f;
+    //public float movementSpeed = 2000f;
     public float turnSpeed=5;
+    //public float maxSpeed=50;
+    public float kickingPower=50;
     Animator animator;
+    bool isKicking=false;
 
-    public GameObject weapon;
 
     void Start(){
         playerBody=GetComponent<Rigidbody>();
@@ -19,15 +21,19 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (Input.GetKey("w"))
+        if (Input.GetKeyDown("w"))
         {
             Debug.Log("Key down");
-            animator.SetBool("isWalking", true);
+            animator.SetBool("isWalking", true);           
+        }
+
+        if(Input.GetKey("w")){
             playerBody.AddForce(transform.forward*10);
         }
 
         if(Input.GetKeyUp("w")) {
             Debug.Log("Key up");
+            playerBody.AddForce(-transform.forward*playerBody.velocity.magnitude*0.5f,ForceMode.VelocityChange);
             animator.SetBool("isWalking", false);
         }
 
@@ -57,4 +63,21 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter(Collision collision){
+        if(collision.transform.tag=="Ball" && isKicking){       //Kick direction uses a mix of the direction the player is facing and contact point data
+            kickingPower=kickingPower+playerBody.velocity.z*0.2f;
+            foreach(ContactPoint contact in collision){
+                collision.transform.GetComponent<Rigidbody>().AddForce(-contact.normal*kickingPower*0.5f+transform.forward*kickingPower*0.5f+Vector3.up*kickingPower*0.16f,ForceMode.VelocityChange);
+            }
+            isKicking=false;
+        }
+    }
+
+    public void Kicking(){
+        isKicking=true;
+    }
+
+    public void DoneKicking(){
+        isKicking=false;
+    }    
 }
